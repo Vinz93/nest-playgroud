@@ -14,13 +14,13 @@ export class CatsController {
   @Post()
   @UsePipes(new JoiValidationPipe(createCatSchema))
   @UseFilters()
-  async create(@Body() createCatDto: CreateCatDto) {
-    this.catsService.create(createCatDto);
+  async create(@Body() createCatDto: CreateCatDto): Promise<Cat>  {
+    return this.catsService.create(createCatDto);
   }
 
   @Get()
   async findAll(): Promise<Cat[]> {
-    throw new HttpException('Forbidden carajito', HttpStatus.FORBIDDEN);
+    // throw new HttpException('Forbidden carajito', HttpStatus.FORBIDDEN);
 
     return this.catsService.findAll();
   }
